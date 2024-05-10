@@ -5,6 +5,7 @@ import { createRegister, getSpreadsheetData } from "./helpers/functions";
 import "./App.css";
 
 function App() {
+
   const [totalDineroDisponibleValue, setTotalDineroDisponibleValue] =
     useState();
   const [totalNecesidadesBasicasValue, setTotalNecesidadesBasicasValue] =
@@ -50,6 +51,8 @@ function App() {
     },
   ];
 
+  const [response, setResponse] = useState('')
+
   const handleCreateRegister = () => {
     createRegister()
       .then((data) => {
@@ -70,15 +73,18 @@ function App() {
         setTotalDiversionValue,
         setTotalFormacionValue,
         setTotalDonativosValue
-      ); // Use async/await inside useEffect
+      );
     })();
-  }, []);
+  }, [response]);
+
+  const updateResponse = (newResponse) => {
+    setResponse(newResponse);
+  }
 
   return (
-    <div className="mainContainer">
-      {/* <button onClick={() => getSpreadsheetData(setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue)}>Read</button> */}
+    <div className="mainContainer">      
       <button onClick={() => handleCreateRegister()}>Create</button>
-      <MoneyIncomeCard saldoDisponible={totalDineroDisponibleValue} />
+      <MoneyIncomeCard saldoDisponible={totalDineroDisponibleValue} setResponse={updateResponse} />
       {bags.map((bag, index) => {
         return (
           <BagCard
@@ -86,6 +92,7 @@ function App() {
             porcentaje={bag.porcentajeDineroTotal}
             name={bag.nombreBolsa}
             value={bag.valorBolsa}
+            setResponse={updateResponse}
           />
         );
       })}

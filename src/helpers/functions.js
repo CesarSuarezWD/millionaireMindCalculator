@@ -1,5 +1,3 @@
-  // Implementado de: https://sheetdb.io/ y de https://www.youtube.com/watch?v=xfSeE-E9i-E&list=LL&index=2&t=24s
-
   import axios from 'axios';
 
   export const getSpreadsheetData = async (setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue) => {

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { sendPostRequest } from "../../helpers/functions";
 import "./BagCard.css";
 
-const BagCard = ({ porcentaje, name, value }) => {
+const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
   const [inputValue, setInputValue] = useState("");
@@ -12,7 +12,7 @@ const BagCard = ({ porcentaje, name, value }) => {
   const [diversionWithdrawal, setDiversionWithdrawal] = useState("");
   const [formacionWithdrawal, setFormacionWithdrawal] = useState("");
   const [donativosWithdrawal, setDonativosWithdrawal] = useState("");
-  const [withdrawalReason, setWithdrawalReason] = useState("");
+  const [withdrawalReason, setWithdrawalReason] = useState("")
 
   useEffect(() => {
     if(name === 'Necesidades Básicas'){
@@ -50,14 +50,19 @@ const BagCard = ({ porcentaje, name, value }) => {
   const handleTextAreaChange = (event) => {
     setWithdrawalReason(event.target.value);
   };
-  console.log(transactionStatus);
+
+  useEffect(() => {
+    setResponse(transactionStatus)
+    transactionStatus === 200 ? (setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
+  }, [handleInputChange])
+  
   return (
     <section className="bagCardMainContainer">
       <h2>{name}</h2>
       <h3>Porcentaje del monto total {porcentaje}</h3>
       <h3>Saldo disponible {value === undefined ? "$0" : "$" + value}</h3>
-      <input type="number" placeholder="$0" onChange={handleInputChange}></input>
-      <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange}></textarea>
+      <input type="number" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
+      <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
       <button onClick={() => sendPostRequest(data, setTransactionStatus)}>Retirar</button>
     </section>
   );

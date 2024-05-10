@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { sendPostRequest } from "../../helpers/functions";
 import "./MoneyIncomeCard.css";
 
-const MoneyIncomeCard = ({ saldoDisponible }) => {
+const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("")
 
   const data = {
     // ID: "",
@@ -19,11 +19,16 @@ const MoneyIncomeCard = ({ saldoDisponible }) => {
     // Donativos: "",
     // MotivoRetiro: "",
   };
-
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-  console.log(transactionStatus);
+
+  useEffect(() => {
+    setResponse(transactionStatus)
+    transactionStatus === 200 ? (setInputValue(''), setTransactionStatus(null)) : (setInputValue(inputValue), setTransactionStatus(transactionStatus));
+  }, [handleInputChange])
+
   return (
     <section id="ingresoDineroCard" className="MoneyIncomeCardMainContainer">
       <h2>Ingresa el monto de dinero</h2>
@@ -31,6 +36,7 @@ const MoneyIncomeCard = ({ saldoDisponible }) => {
         id="inputMoneyIncome"
         placeholder="$0"
         onChange={handleInputChange}
+        value={inputValue}
       ></input>
       <button onClick={() => sendPostRequest(data, setTransactionStatus)}>Ingresar</button>
       <h2 placeholder="0">
