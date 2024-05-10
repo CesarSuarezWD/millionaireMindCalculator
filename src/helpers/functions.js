@@ -13,43 +13,24 @@
       setTotalDiversionValue(jsonData[1][14])
       setTotalFormacionValue(jsonData[1][15])
       setTotalDonativosValue(jsonData[1][16])
+      // console.log(jsonData);
     } catch (error) {
-      console.error(error);
+      console.error("Error al traer la información", error);
     }
   };
 
-
-  // export const sendPostRequest = async (data) => {
-  //   try {
-  //     const response = await axios.post('https://script.google.com/macros/s/AKfycbwiBjRGF8rRT5aGVL8YA_rbmWNVUllXW5WVQ0TZpPA2-VgorhLMB4kcrXaQwW3owpNEKg/exec', data);
-  //     console.log('Transacción realizada correctamente!', response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  export const sendPostRequest = async (data) => {
-      console.log(data)
+  export const sendPostRequest = async (data, setTransactionStatus) => {
+    try {
       fetch("https://script.google.com/macros/s/AKfycbwiBjRGF8rRT5aGVL8YA_rbmWNVUllXW5WVQ0TZpPA2-VgorhLMB4kcrXaQwW3owpNEKg/exec", 
           {
               method: "POST",
               body: JSON.stringify(data)
-          }).then(res => res.text());
+          }).then(res => setTransactionStatus(res.status));
+      
+    } catch (error) {
+      console.log("Error enviando la información", error);
+    }
   }
-
-//   export const sendPostRequest = (e, id) => {
-//     const formEle = document.getElementById(id)
-//     e.preventDefault()
-//     const formData = new FormData(formEle)
-//     console.log(formEle);
-//     fetch("https://script.google.com/macros/s/AKfycbwiBjRGF8rRT5aGVL8YA_rbmWNVUllXW5WVQ0TZpPA2-VgorhLMB4kcrXaQwW3owpNEKg/exec", 
-//         {
-//             method: "POST",
-//             body: formData
-//         }).then((res) => res.text()).then((data) => {console.log(data)}).catch((error) => {console.log(error);});
-// }
-
-
 
   export const createRegister = () => {
     return new Promise((resolve, reject) => {

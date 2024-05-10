@@ -19,32 +19,32 @@ function App() {
   const [totalDonativosValue, setTotalDonativosValue] = useState();
   const bags = [
     {
-      idBag: "NecesidadesBasicas",
+      porcentajeDineroTotal: "50%",
       nombreBolsa: "Necesidades Básicas",
       valorBolsa: totalNecesidadesBasicasValue,
     },
     {
-      idBag: "AhorroProyectos",
+      porcentajeDineroTotal: "10%",
       nombreBolsa: "Ahorro / proyectos",
       valorBolsa: totalAhorroProyectosValue,
     },
     {
-      idBag: "InversionesLibertadFinanciera",
+      porcentajeDineroTotal: "10%",
       nombreBolsa: "Inversiones / L. Financiera",
       valorBolsa: totalInversionesLibertadFinancieraValue,
     },
     {
-      idBag: "Diversion",
+      porcentajeDineroTotal: "10%",
       nombreBolsa: "Diversión",
       valorBolsa: totalDiversionValue,
     },
     {
-      idBag: "Formacion",
+      porcentajeDineroTotal: "10%",
       nombreBolsa: "Formación",
       valorBolsa: totalFormacionValue,
     },
     {
-      idBag: "Donativos",
+      porcentajeDineroTotal: "10%",
       nombreBolsa: "Donativos",
       valorBolsa: totalDonativosValue,
     },
@@ -83,7 +83,7 @@ function App() {
         return (
           <BagCard
             key={index}
-            id={bag.idBag}
+            porcentaje={bag.porcentajeDineroTotal}
             name={bag.nombreBolsa}
             value={bag.valorBolsa}
           />
