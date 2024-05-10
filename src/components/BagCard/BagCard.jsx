@@ -63,7 +63,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <h3>Saldo disponible {value === undefined ? "$0" : "$" + value}</h3>
       <input type="number" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)}>Retirar</button>
+      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue && withdrawalReason )=== '' ? true : false}>Retirar</button>
     </section>
   );
 };

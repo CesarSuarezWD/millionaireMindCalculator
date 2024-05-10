@@ -38,7 +38,7 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
         onChange={handleInputChange}
         value={inputValue}
       ></input>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)}>Ingresar</button>
+      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={inputValue === '' ? true : false}>Ingresar</button>
       <h2 placeholder="0">
         Total dinero disponible{" "}
         {saldoDisponible === undefined ? "$0" : "$" + saldoDisponible}

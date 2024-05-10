@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BagCard from "./components/BagCard/BagCard";
 import MoneyIncomeCard from "./components/MoneyIncomeCard/MoneyIncomeCard";
-import { createRegister, getSpreadsheetData } from "./helpers/functions";
+import {  getSpreadsheetData } from "./helpers/functions";
 import "./App.css";
 
 function App() {
@@ -53,16 +53,6 @@ function App() {
 
   const [response, setResponse] = useState('')
 
-  const handleCreateRegister = () => {
-    createRegister()
-      .then((data) => {
-        console.log("Esta es la respuesta del dato creado: ", data); // Aquí puedes manejar la data retornada
-      })
-      .catch((error) => {
-        console.error("Error al crear el registro:", error);
-      });
-  };
-
   useEffect(() => {
     (async () => {
       await getSpreadsheetData(
@@ -82,8 +72,7 @@ function App() {
   }
 
   return (
-    <div className="mainContainer">      
-      <button onClick={() => handleCreateRegister()}>Create</button>
+    <div className="mainContainer"> 
       <MoneyIncomeCard saldoDisponible={totalDineroDisponibleValue} setResponse={updateResponse} />
       {bags.map((bag, index) => {
         return (
