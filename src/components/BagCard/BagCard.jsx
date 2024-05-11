@@ -16,17 +16,17 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   useEffect(() => {
     if(name === 'Necesidades Básicas'){
-      setNecesidadesBasicasWithdrawal(inputValue);
+      setNecesidadesBasicasWithdrawal(-inputValue);
     } else if (name === 'Ahorro / proyectos'){
-      setAhorroProyectosWithdrawal(inputValue);
+      setAhorroProyectosWithdrawal(-inputValue);
     }else if (name === 'Inversiones / L. Financiera'){
-      setInversionesLibertadFinancieraWithdrawal(inputValue);
+      setInversionesLibertadFinancieraWithdrawal(-inputValue);
     }else if (name === 'Diversión'){
-      setDiversionWithdrawal(inputValue);
+      setDiversionWithdrawal(-inputValue);
     }else if (name === 'Formación'){
-      setFormacionWithdrawal(inputValue);
+      setFormacionWithdrawal(-inputValue);
     }else if (name === 'Donativos'){
-      setDonativosWithdrawal(inputValue);
+      setDonativosWithdrawal(-inputValue);
     }
   }, [inputValue])
 
@@ -44,11 +44,18 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    let value = event.target.value
+    value = value.replace(/-/g, '');
+    if (value < 0) {
+      setInputValue(0);
+    } else {
+      setInputValue(value);
+    }
   };
 
   const handleTextAreaChange = (event) => {
-    setWithdrawalReason(event.target.value);
+    let textValue = event.target.value;
+    setWithdrawalReason(textValue);
   };
 
   useEffect(() => {
@@ -63,7 +70,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <h3>Saldo disponible {value === undefined ? "$0" : "$" + value}</h3>
       <input type="number" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue && withdrawalReason )=== '' ? true : false}>Retirar</button>
+      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
     </section>
   );
 };

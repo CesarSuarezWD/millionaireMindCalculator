@@ -21,7 +21,13 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
   };
   
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    let value = event.target.value
+    value = value.replace(/-/g, '');
+    if (value < 0) {
+      setInputValue(0);
+    } else {
+      setInputValue(value);
+    }
   };
 
   useEffect(() => {
@@ -33,12 +39,13 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
     <section id="ingresoDineroCard" className="MoneyIncomeCardMainContainer">
       <h2>Ingresa el monto de dinero</h2>
       <input
+        type="number"
         id="inputMoneyIncome"
         placeholder="$0"
         onChange={handleInputChange}
         value={inputValue}
       ></input>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={inputValue === '' ? true : false}>Ingresar</button>
+      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={inputValue < 1 || inputValue === '' ? true : false}>Ingresar</button>
       <h2 placeholder="0">
         Total dinero disponible{" "}
         {saldoDisponible === undefined ? "$0" : "$" + saldoDisponible}
