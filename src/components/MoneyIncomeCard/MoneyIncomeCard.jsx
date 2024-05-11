@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { sendPostRequest } from "../../helpers/functions";
+import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
 import "./MoneyIncomeCard.css";
 
 const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
   const [inputValue, setInputValue] = useState("")
+  let dateFormated = dateNowFormated();
 
   const data = {
     // ID: "",
-    // Fecha: "",
+    Fecha: dateFormated,
     MontoIngresado: inputValue,
     // NecesidadesBasicas: "",
     // AhorroProyectos: "",

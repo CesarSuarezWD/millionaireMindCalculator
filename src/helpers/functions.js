@@ -1,8 +1,19 @@
   import axios from 'axios';
 
+  // Formateo de la fecha actual
+  export const dateNowFormated = () => {
+    const timestamp = Date.now();
+    const fecha = new Date(timestamp);
+    const dia = fecha.getDate();
+    const mes = fecha.toLocaleString('es-CO', { month: 'short' });
+    const año = fecha.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${año}`;
+    return fechaFormateada;
+  }
+
   export const getSpreadsheetData = async (setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue) => {
     try {
-      const response = await axios.get('https://script.google.com/macros/s/AKfycbwiBjRGF8rRT5aGVL8YA_rbmWNVUllXW5WVQ0TZpPA2-VgorhLMB4kcrXaQwW3owpNEKg/exec');
+      const response = await axios.get('https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec');
       const jsonData = response.data.myalldata;
       setTotalDineroDisponibleValue(jsonData[1][10])
       setTotalNecesidadesBasicasValue(jsonData[1][11])
@@ -19,7 +30,7 @@
 
   export const sendPostRequest = async (data, setTransactionStatus) => {
     try {
-      fetch("https://script.google.com/macros/s/AKfycbwiBjRGF8rRT5aGVL8YA_rbmWNVUllXW5WVQ0TZpPA2-VgorhLMB4kcrXaQwW3owpNEKg/exec", 
+      fetch("https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec", 
           {
               method: "POST",
               body: JSON.stringify(data)

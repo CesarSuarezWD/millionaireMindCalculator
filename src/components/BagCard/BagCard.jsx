@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { sendPostRequest } from "../../helpers/functions";
+import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
 import "./BagCard.css";
 
 const BagCard = ({ porcentaje, name, value, setResponse }) => {
@@ -13,6 +13,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   const [formacionWithdrawal, setFormacionWithdrawal] = useState("");
   const [donativosWithdrawal, setDonativosWithdrawal] = useState("");
   const [withdrawalReason, setWithdrawalReason] = useState("")
+  let dateFormated = dateNowFormated();
 
   useEffect(() => {
     if(name === 'Necesidades Básicas'){
@@ -32,7 +33,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   const data = {
     // ID: "",
-    // Fecha: "",
+    Fecha: dateFormated,
     // MontoIngresado: "",
     NecesidadesBasicas: necesidadesBasicasWithdrawal,
     AhorroProyectos: ahorroProyectosWithdrawal,
