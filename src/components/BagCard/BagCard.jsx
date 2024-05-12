@@ -6,6 +6,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
   const [validationAmmount, setValidationAmmount] = useState(null)
+  const [restrictionWithdrawal, setRestrictionWithdrawal] = useState(false)
   const [inputValue, setInputValue] = useState("");
   const [necesidadesBasicasWithdrawal, setNecesidadesBasicasWithdrawal] = useState("");
   const [ahorroProyectosWithdrawal, setAhorroProyectosWithdrawal] = useState("");
@@ -62,16 +63,18 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
     setResponse(transactionStatus)
     transactionStatus === 200 ? (setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
   }, [handleInputChange])
+
+  console.log('restrictionWithdrawal', restrictionWithdrawal);
   
   return (
     <section className="bagCardMainContainer">
       <h2>{name}</h2>
       <h3>Porcentaje del monto total {porcentaje}</h3>
       <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
-      <input type="text" placeholder="$0" onChange={() => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
+      <input type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
-      {/* <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button> */}
-      <button onClick={() => withdrawalRestriction(value, validationAmmount)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      {/* <button onClick={() => withdrawalRestriction(value, validationAmmount, setRestrictionWithdrawal)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button> */}
     </section>
   );
 };
