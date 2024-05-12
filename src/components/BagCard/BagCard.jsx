@@ -46,11 +46,13 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   const handleInputChange = (event) => {
     let value = event.target.value
-    value = value.replace(/-/g, '');
+    value = value.replace(/[^0-9]/g, '');
     if (value < 0) {
       setInputValue(0);
-    } else {
-      setInputValue(value);
+    }else {
+      const numeroSinPuntos = value.replace(/\./g, '');
+      const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
+      setInputValue(numeroFormateado);
     }
   };
 
@@ -68,8 +70,8 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
     <section className="bagCardMainContainer">
       <h2>{name}</h2>
       <h3>Porcentaje del monto total {porcentaje}</h3>
-      <h3>Saldo disponible {value === undefined ? "$0" : "$" + value}</h3>
-      <input type="number" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
+      <h3>Saldo disponible {value === undefined ? "$0" : "$" + value.toLocaleString('es-ES')}</h3>
+      <input type="text" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
       <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
     </section>

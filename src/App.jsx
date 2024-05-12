@@ -26,7 +26,7 @@ function App() {
     },
     {
       porcentajeDineroTotal: "10%",
-      nombreBolsa: "Ahorro / proyectos",
+      nombreBolsa: "Ahorro / Proyectos",
       valorBolsa: totalAhorroProyectosValue,
     },
     {

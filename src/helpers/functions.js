@@ -11,6 +11,7 @@
     return fechaFormateada;
   }
 
+  // Funcion doGet
   export const getSpreadsheetData = async (setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue) => {
     try {
       const response = await axios.get('https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec');
@@ -28,6 +29,7 @@
     }
   };
 
+  // Funcion doPost
   export const sendPostRequest = async (data, setTransactionStatus) => {
     try {
       fetch("https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec", 
@@ -41,6 +43,7 @@
     }
   }
 
+  // Funcion doPost de preuba
   export const createRegister = () => {
     return new Promise((resolve, reject) => {
       fetch('https://sheetdb.io/api/v1/ev60nhsjp9umm', {
