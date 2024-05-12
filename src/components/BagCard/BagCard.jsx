@@ -17,17 +17,17 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   useEffect(() => {
     if(name === 'Necesidades Básicas'){
-      setNecesidadesBasicasWithdrawal(-inputValue);
-    } else if (name === 'Ahorro / proyectos'){
-      setAhorroProyectosWithdrawal(-inputValue);
+      setNecesidadesBasicasWithdrawal(`-${inputValue}`);
+    } else if (name === 'Ahorro / Proyectos'){
+      setAhorroProyectosWithdrawal(`-${inputValue}`);
     }else if (name === 'Inversiones / L. Financiera'){
-      setInversionesLibertadFinancieraWithdrawal(-inputValue);
+      setInversionesLibertadFinancieraWithdrawal(`-${inputValue}`);
     }else if (name === 'Diversión'){
-      setDiversionWithdrawal(-inputValue);
+      setDiversionWithdrawal(`-${inputValue}`);
     }else if (name === 'Formación'){
-      setFormacionWithdrawal(-inputValue);
+      setFormacionWithdrawal(`-${inputValue}`);
     }else if (name === 'Donativos'){
-      setDonativosWithdrawal(-inputValue);
+      setDonativosWithdrawal(`-${inputValue}`);
     }
   }, [inputValue])
 
@@ -52,7 +52,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
     }else {
       const numeroSinPuntos = value.replace(/\./g, '');
       const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
-      setInputValue(numeroFormateado);
+      setInputValue(`$ ${numeroFormateado}`);
     }
   };
 
@@ -70,7 +70,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
     <section className="bagCardMainContainer">
       <h2>{name}</h2>
       <h3>Porcentaje del monto total {porcentaje}</h3>
-      <h3>Saldo disponible {value === undefined ? "$0" : "$" + value.toLocaleString('es-ES')}</h3>
+      <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
       <input type="text" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
       <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>

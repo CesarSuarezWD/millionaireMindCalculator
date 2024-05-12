@@ -29,7 +29,7 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
     }else {
       const numeroSinPuntos = value.replace(/\./g, '');
       const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
-      setInputValue(numeroFormateado);
+      setInputValue(`$ ${numeroFormateado}`);
     }
   };
 
@@ -51,7 +51,7 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
       <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={inputValue < 1 || inputValue === '' ? true : false}>Ingresar</button>
       <h2 placeholder="0">
         Total dinero disponible{" "}
-        {saldoDisponible === undefined ? "$0" : "$" + saldoDisponible.toLocaleString('es-ES')}
+        {saldoDisponible === undefined ? "$0" : `$${saldoDisponible.toLocaleString('es-ES')}`}
       </h2>
     </section>
   );
