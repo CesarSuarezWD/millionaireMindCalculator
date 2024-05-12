@@ -11,6 +11,30 @@
     return fechaFormateada;
   }
 
+  export const handleInputChange = (event, setInputValue, setValidationAmmount) => {
+    let localInputValue = event.target.value
+    localInputValue = localInputValue.replace(/[^0-9]/g, '');
+    if (localInputValue < 0) {
+      setInputValue(0);
+    }else {
+      const numeroSinPuntos = localInputValue.replace(/\./g, '');
+      const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
+      setValidationAmmount(numeroSinPuntos)
+      setInputValue(`$ ${numeroFormateado}`);
+    }
+  };
+
+  export const handleTextAreaChange = (event, setWithdrawalReason) => {
+    let textValue = event.target.value;
+    setWithdrawalReason(textValue);
+  };
+
+  export const withdrawalRestriction = (value, validationAmmount) => {
+    const valueToNumber = parseInt(value)
+    const inputValueToNumber = parseInt(validationAmmount)
+    inputValueToNumber > valueToNumber ? console.log('no puedes retirar mas de lo que tienes en esta bolsa') : console.log('retirado con exito')
+  }
+
   // Funcion doGet
   export const getSpreadsheetData = async (setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue) => {
     try {

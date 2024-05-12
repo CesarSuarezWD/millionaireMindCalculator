@@ -22,12 +22,12 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
   };
   
   const handleInputChange = (event) => {
-    let value = event.target.value
-    value = value.replace(/[^0-9]/g, '');
-    if (value < 0) {
+    let localInputValue = event.target.value
+    localInputValue = localInputValue.replace(/[^0-9]/g, '');
+    if (localInputValue < 0) {
       setInputValue(0);
     }else {
-      const numeroSinPuntos = value.replace(/\./g, '');
+      const numeroSinPuntos = localInputValue.replace(/\./g, '');
       const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
       setInputValue(`$ ${numeroFormateado}`);
     }

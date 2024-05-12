@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
-import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
+import { sendPostRequest, dateNowFormated, handleTextAreaChange, withdrawalRestriction } from "../../helpers/functions";
 import "./BagCard.css";
 
 const BagCard = ({ porcentaje, name, value, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
+  const [validationAmmount, setValidationAmmount] = useState(null)
   const [inputValue, setInputValue] = useState("");
   const [necesidadesBasicasWithdrawal, setNecesidadesBasicasWithdrawal] = useState("");
   const [ahorroProyectosWithdrawal, setAhorroProyectosWithdrawal] = useState("");
@@ -45,20 +46,16 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   };
 
   const handleInputChange = (event) => {
-    let value = event.target.value
-    value = value.replace(/[^0-9]/g, '');
-    if (value < 0) {
+    let localInputValue = event.target.value
+    localInputValue = localInputValue.replace(/[^0-9]/g, '');
+    if (localInputValue < 0) {
       setInputValue(0);
     }else {
-      const numeroSinPuntos = value.replace(/\./g, '');
+      const numeroSinPuntos = localInputValue.replace(/\./g, '');
       const numeroFormateado = Number(numeroSinPuntos).toLocaleString('es-ES');
+      setValidationAmmount(numeroSinPuntos)
       setInputValue(`$ ${numeroFormateado}`);
     }
-  };
-
-  const handleTextAreaChange = (event) => {
-    let textValue = event.target.value;
-    setWithdrawalReason(textValue);
   };
 
   useEffect(() => {
@@ -71,9 +68,10 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <h2>{name}</h2>
       <h3>Porcentaje del monto total {porcentaje}</h3>
       <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
-      <input type="text" placeholder="$0" onChange={handleInputChange} value={inputValue}></input>
-      <textarea placeholder="Motivo del retiro" onChange={handleTextAreaChange} value={withdrawalReason}></textarea>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      <input type="text" placeholder="$0" onChange={() => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
+      <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
+      {/* <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button> */}
+      <button onClick={() => withdrawalRestriction(value, validationAmmount)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
     </section>
   );
 };
