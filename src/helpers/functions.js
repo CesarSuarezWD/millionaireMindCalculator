@@ -32,7 +32,7 @@
   export const withdrawalRestriction = (value, validationAmmount, setRestrictionWithdrawal) => {
     const valueToNumber = parseInt(value)
     const inputValueToNumber = parseInt(validationAmmount)
-    inputValueToNumber > valueToNumber ? (console.log('no puedes retirar mas de lo que tienes en esta bolsa'), setRestrictionWithdrawal(true)) : (console.log('retirado con exito'), setRestrictionWithdrawal(false))
+    inputValueToNumber > valueToNumber ? setRestrictionWithdrawal(true) : setRestrictionWithdrawal(false)
   }
 
   // Funcion doGet

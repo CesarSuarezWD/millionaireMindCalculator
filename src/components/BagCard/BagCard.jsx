@@ -60,11 +60,10 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   };
 
   useEffect(() => {
+    withdrawalRestriction(value, validationAmmount, setRestrictionWithdrawal)
     setResponse(transactionStatus)
     transactionStatus === 200 ? (setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
   }, [handleInputChange])
-
-  console.log('restrictionWithdrawal', restrictionWithdrawal);
   
   return (
     <section className="bagCardMainContainer">
@@ -73,8 +72,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
       <input type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
-      <button onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
-      {/* <button onClick={() => withdrawalRestriction(value, validationAmmount, setRestrictionWithdrawal)} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button> */}
+      <button onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus), console.log('Saldo retirado exitosamente!')) : (null, console.log('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
     </section>
   );
 };
