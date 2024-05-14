@@ -63,10 +63,8 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   useEffect(() => {
     withdrawalRestriction(value, validationAmmount, setRestrictionWithdrawal)
     setResponse(transactionStatus)
-    transactionStatus === 200 ? (notify(), setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
+    transactionStatus === 200 ? (toast.success(`Has retirado exitosamente ${inputValue} de la bolsa de ${name}!`, {duration: 3000}), setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
   }, [handleInputChange])
-
-  const notify = () => toast.success('Successfully toasted!');
   
   return (
     <section className="bagCardMainContainer">
@@ -75,7 +73,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
       <input type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
-      <button onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus), console.log('Saldo retirado exitosamente!')) : (null, console.log('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      <button onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus)) : (null, toast.error('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
       <Toaster
         position="bottom-right"
         reverseOrder={false}

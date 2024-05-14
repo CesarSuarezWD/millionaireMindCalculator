@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
+import toast, { Toaster } from 'react-hot-toast';
 import "./MoneyIncomeCard.css";
 
 const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
@@ -35,7 +36,7 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
 
   useEffect(() => {
     setResponse(transactionStatus)
-    transactionStatus === 200 ? (setInputValue(''), setTransactionStatus(null)) : (setInputValue(inputValue), setTransactionStatus(transactionStatus));
+    transactionStatus === 200 ? (toast.success(`Has consignado exitosamente ${inputValue} !`, {duration: 3000}), setInputValue(''), setTransactionStatus(null)) : (setInputValue(inputValue), setTransactionStatus(transactionStatus));
   }, [handleInputChange])
 
   return (
