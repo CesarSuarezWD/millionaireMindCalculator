@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { sendPostRequest, dateNowFormated, handleTextAreaChange, withdrawalRestriction } from "../../helpers/functions";
+import toast, { Toaster } from 'react-hot-toast';
 import "./BagCard.css";
 
 const BagCard = ({ porcentaje, name, value, setResponse }) => {
@@ -62,8 +63,10 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   useEffect(() => {
     withdrawalRestriction(value, validationAmmount, setRestrictionWithdrawal)
     setResponse(transactionStatus)
-    transactionStatus === 200 ? (setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
+    transactionStatus === 200 ? (notify(), setInputValue(''), setWithdrawalReason(''), setTransactionStatus(null)) : (setInputValue(inputValue), setWithdrawalReason(withdrawalReason), setTransactionStatus(transactionStatus));
   }, [handleInputChange])
+
+  const notify = () => toast.success('Successfully toasted!');
   
   return (
     <section className="bagCardMainContainer">
@@ -73,8 +76,14 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       <input type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
       <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
       <button onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus), console.log('Saldo retirado exitosamente!')) : (null, console.log('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+      />
     </section>
   );
 };
 
 export default BagCard;
+
+// Leer la documentacion de los toasters en https://react-hot-toast.com/docs
