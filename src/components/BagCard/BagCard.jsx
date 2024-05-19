@@ -76,19 +76,21 @@ const BagCard = ({ icon, porcentaje, name, value, setResponse }) => {
       <input className="bagCardInput" type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
       <textarea className="bagCardTA" placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason} rows="2"></textarea>
       <button className="bagCardButton" onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus)) : (null, toast.error('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      {/* <div className="animate-pulse flex flex-col items-center">
+        <div className="w-16 h-16 bg-gray-200 rounded-full"></div>
+        <div className="h-6 w-1/2 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-1/6 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-10 w-60 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-16 w-60 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-10 w-2/4 mt-2 bg-gray-200 rounded"></div>
+      </div> */}
+    </section>
       <Toaster
         position="bottom-right"
         reverseOrder={false}
       />
-    </section>
-    {/* <div className="animate-pulse">
-      <div className="h-6 bg-gray-200 rounded w-1/2 mb-2"></div>
-      <div className="h-6 bg-gray-200 rounded w-full mb-2"></div>
-      <div className="h-6 bg-gray-200 rounded w-1/2 mb-4"></div>
-      <div className="h-10 bg-gray-200 rounded w-full mb-4"></div>
-      <div className="h-20 bg-gray-200 rounded w-full mb-4"></div>
-      <div className="h-10 bg-gray-200 rounded w-1/3"></div>
-    </div> */}
     </>
   );
 };

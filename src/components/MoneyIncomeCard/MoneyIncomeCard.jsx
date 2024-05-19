@@ -57,6 +57,15 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
         <strong>{saldoDisponible === undefined ? "$0" : `$${saldoDisponible.toLocaleString('es-ES')}`}</strong>
       </h3>
       <button className="moneyIncomeButton" onClick={() => sendPostRequest(data, setTransactionStatus)} disabled={inputValue < 1 || inputValue === '' ? true : false}>Ingresar</button>
+      {/* <div className="animate-pulse flex flex-col items-center">
+        <div className="w-16 h-16 bg-gray-200 rounded-full"></div>
+        <div className="h-6 w-80 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-10 w-96 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-56 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/6 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-10 w-2/4 mt-2 bg-gray-200 rounded"></div>
+      </div> */}
     </section>
   );
 };
