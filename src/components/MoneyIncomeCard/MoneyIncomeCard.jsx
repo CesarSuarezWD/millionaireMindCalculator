@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
 import toast, { Toaster } from 'react-hot-toast';
-import moneyBagIcon from '../../assets/icons8-coins-64.png'
+import moneyBagIcon from '../../assets/millionaireMindLogo.png'
 import "./MoneyIncomeCard.css";
 
 const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
@@ -42,7 +42,7 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
 
   return (
     <section id="ingresoDineroCard" className="moneyIncomeCardMainContainer">
-      <img src={moneyBagIcon} />
+      <img className="appLogo" src={moneyBagIcon} />
       <h2 className="moneyIncomeH2">Ingresa el monto de dinero a ser distribuido</h2>
       <input
         className="moneyIncomeCardInput"
@@ -65,6 +65,15 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
         <div className="h-6 w-56 mt-2 bg-gray-200 rounded"></div>
         <div className="h-6 w-2/6 mt-2 bg-gray-200 rounded"></div>
         <div className="h-10 w-2/4 mt-2 bg-gray-200 rounded"></div>
+      </div> */}
+      {/* <div className="animate-pulse flex flex-col items-center">
+        <div className="w-16 h-16 bg-gray-200 rounded-full"></div>
+        <div className="h-6 w-56 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-10 w-56 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-56 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-6 w-2/6 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-8 w-2/4 mt-2 bg-gray-200 rounded"></div>
       </div> */}
     </section>
   );

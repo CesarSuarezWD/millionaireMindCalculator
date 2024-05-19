@@ -29,6 +29,10 @@
       }
 }
 
+.appLogo {
+    width: 50%;
+}
+
 .moneyIncomeH2 {
     padding: 4%;
     font-weight: bold;

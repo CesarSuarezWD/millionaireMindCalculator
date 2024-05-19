@@ -82,9 +82,9 @@ const BagCard = ({ icon, porcentaje, name, value, setResponse }) => {
         <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
         <div className="h-6 w-1/6 mt-2 bg-gray-200 rounded"></div>
         <div className="h-6 w-2/3 mt-2 bg-gray-200 rounded"></div>
-        <div className="h-10 w-60 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-8 w-60 mt-2 bg-gray-200 rounded"></div>
         <div className="h-16 w-60 mt-2 bg-gray-200 rounded"></div>
-        <div className="h-10 w-2/4 mt-2 bg-gray-200 rounded"></div>
+        <div className="h-8 w-2/4 mt-2 bg-gray-200 rounded"></div>
       </div> */}
     </section>
       <Toaster
