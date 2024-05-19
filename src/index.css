@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-image: url('./assets/wallpaper-7333087_1280.png');
+  /* background-image: url('./assets/wallpaper-7333087_1280.png'); */
+  background: black;
   background-size: cover;
 }
 
