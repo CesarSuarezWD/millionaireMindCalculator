@@ -3,7 +3,7 @@ import { sendPostRequest, dateNowFormated, handleTextAreaChange, withdrawalRestr
 import toast, { Toaster } from 'react-hot-toast';
 import "./BagCard.css";
 
-const BagCard = ({ porcentaje, name, value, setResponse }) => {
+const BagCard = ({ icon, porcentaje, name, value, setResponse }) => {
 
   const[transactionStatus, setTransactionStatus] = useState(null)
   const [validationAmmount, setValidationAmmount] = useState(null)
@@ -23,7 +23,7 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
       setNecesidadesBasicasWithdrawal(`-${inputValue}`);
     } else if (name === 'Ahorro / Proyectos'){
       setAhorroProyectosWithdrawal(`-${inputValue}`);
-    }else if (name === 'Inversiones / L. Financiera'){
+    }else if (name === 'Inversiones'){
       setInversionesLibertadFinancieraWithdrawal(`-${inputValue}`);
     }else if (name === 'Diversión'){
       setDiversionWithdrawal(`-${inputValue}`);
@@ -67,21 +67,33 @@ const BagCard = ({ porcentaje, name, value, setResponse }) => {
   }, [handleInputChange])
   
   return (
+    <>
     <section className="bagCardMainContainer">
-      <h2>{name}</h2>
-      <h3>Porcentaje del monto total {porcentaje}</h3>
-      <h3>Saldo disponible {value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</h3>
-      <input type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
-      <textarea placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason}></textarea>
-      <button onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus)) : (null, toast.error('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
+      <img src={icon} />
+      <h2 className="bagCardH2">{name}</h2>
+      <h3 className="bagCardH3">Porcentaje del monto total {porcentaje}</h3>
+      <h3 className="bagCardH3">Saldo disponible <strong>{value === undefined ? "$0" : `$${value.toLocaleString('es-ES')}`}</strong></h3>
+      <input className="bagCardInput" type="text" placeholder="$0" onChange={(event) => handleInputChange(event, setInputValue, setValidationAmmount)} value={inputValue}></input>
+      <textarea className="bagCardTA" placeholder="Motivo del retiro" onChange={(event) => handleTextAreaChange(event, setWithdrawalReason)} value={withdrawalReason} rows="2"></textarea>
+      <button className="bagCardButton" onClick={() => restrictionWithdrawal === false ? (sendPostRequest(data, setTransactionStatus)) : (null, toast.error('No puedes retirar mas de lo que tienes en esta bolsa'))} disabled={(inputValue < 1 || withdrawalReason === '' ) ? true : false}>Retirar</button>
       <Toaster
         position="bottom-right"
         reverseOrder={false}
       />
     </section>
+    {/* <div className="animate-pulse">
+      <div className="h-6 bg-gray-200 rounded w-1/2 mb-2"></div>
+      <div className="h-6 bg-gray-200 rounded w-full mb-2"></div>
+      <div className="h-6 bg-gray-200 rounded w-1/2 mb-4"></div>
+      <div className="h-10 bg-gray-200 rounded w-full mb-4"></div>
+      <div className="h-20 bg-gray-200 rounded w-full mb-4"></div>
+      <div className="h-10 bg-gray-200 rounded w-1/3"></div>
+    </div> */}
+    </>
   );
 };
 
 export default BagCard;
 
 // Leer la documentacion de los toasters en https://react-hot-toast.com/docs
+// Ver el video para generar skeletons en: https://www.youtube.com/watch?v=OEPpwkwOhBU, y utilizar la página: https://www.skeletongenerator.com/

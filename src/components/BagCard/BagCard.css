@@ -1,8 +1,77 @@
 .bagCardMainContainer {
-    height: 40vh;
+    /* height: 36vh; */
+    width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     border: 1px solid #000000;
-    padding: 4% 4%;
+    padding: 3% 2%;
+    margin: 3vh 0;
+    border-radius: 15px;
+    top: 0px;
+    position: relative;
+    background: rgba( 255, 255, 255, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0.5px );
+    -webkit-backdrop-filter: blur( 0.5px );
+    border-radius: 10px;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+    &:focus-within {
+        transition: all 0.3s ease-out;
+        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+        top: -15px;
+        border: 1px solid #cccccc;
+        background: rgba( 255, 255, 255, 0.9);
+      }
+}
+
+.bagCardH2 {
+  font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.bagCardH3 {
+    padding: 4%;
+    font-size: 1.3rem;
+    font-weight:400;
+    text-align: center;
+}
+
+.bagCardInput {
+    height: 4vh;
+    width: 90%;
+    font-size: large;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0 3%;
+}
+
+.bagCardTA {
+    resize: none;
+    font-size: large;
+    width: 90%;
+    margin: 5% 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2% 3%;
+}
+
+.bagCardButton {
+    padding: 2% 18%;
+    border-radius: 10px;
+    /* border: 1px solid black; */
+    margin: 1vh 0;
+    background: #2970ff;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.bagCardButton:disabled {
+    background: #5cbeff;
+    color: #FFFFFF;
+    font-weight: bold;
 }
