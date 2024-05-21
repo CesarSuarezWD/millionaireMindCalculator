@@ -38,7 +38,7 @@
   // Funcion doGet
   export const getSpreadsheetData = async (setTotalDineroDisponibleValue, setTotalNecesidadesBasicasValue, setTotalAhorroProyectosValue, setTotalInversionesLibertadFinancieraValue, setTotalDiversionValue, setTotalFormacionValue, setTotalDonativosValue) => {
     try {
-      const response = await axios.get('https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec');
+      const response = await axios.get(import.meta.env.VITE_REACT_APP_SPREADSHEET_URL);
       const jsonData = response.data.myalldata;
       setTotalDineroDisponibleValue(jsonData[1][10])
       setTotalNecesidadesBasicasValue(jsonData[1][11])
@@ -56,7 +56,7 @@
   // Funcion doPost
   export const sendPostRequest = async (data, setTransactionStatus) => {
     try {
-      fetch("https://script.google.com/macros/s/AKfycbySX0xs9LDiAd54yHg6IsKVKmm4Q5_5Fd4T41EwqgPfQToMhNkLFFaAsFHsy4j-5TOtuw/exec", 
+      fetch(import.meta.env.VITE_REACT_APP_POST_URL, 
           {
               method: "POST",
               body: JSON.stringify(data)

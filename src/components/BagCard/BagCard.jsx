@@ -99,4 +99,4 @@ export default BagCard;
 
 // Leer la documentacion de los toasters en https://react-hot-toast.com/docs
 // Ver el video para generar skeletons en: https://www.youtube.com/watch?v=OEPpwkwOhBU, y utilizar la página: https://www.skeletongenerator.com/
-// Para hacer deploy en gh pages: https://www.youtube.com/watch?v=V2-U_j30u_Y 
+// Para hacer deploy en gh pages: https://www.youtube.com/watch?v=V2-U_j30u_Y
