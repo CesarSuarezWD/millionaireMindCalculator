@@ -80,4 +80,4 @@ const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
 };
 
 export default MoneyIncomeCard;
-// Para hacer deploy en gh pages: https://www.youtube.com/watch?v=V2-U_j30u_Y
+// Para hacer deploy en gh pages: https://www.youtube.com/watch?v=V2-U_j30u_Y 
