@@ -1,5 +1,4 @@
 .bagCardMainContainer {
-    /* height: 36vh; */
     width: fit-content;
     display: flex;
     flex-direction: column;
@@ -29,7 +28,7 @@
 }
 
 .bagCardH2 {
-  font-weight: bold;
+    font-weight: bold;
     font-size: 1.5rem;
 }
 
@@ -74,4 +73,27 @@
     background: #5cbeff;
     color: #FFFFFF;
     font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* Media query para tablets (ancho mínimo de 540px) */
+@media (min-width: 540px) {
+    .bagCardMainContainer {
+        width: 60%;
+        margin: 5% 3%;
+    }
+}
+
+/* Media query para tablets grandes y pequeñas laptops (ancho mínimo de 992px) */
+@media (min-width: 992px) {
+    .bagCardMainContainer {
+        width: 30%;
+    }
+}
+
+/* Media query para laptops y desktops (ancho mínimo de 1200px) */
+@media (min-width: 1200px) {
+    .bagCardMainContainer {
+        width: 24%;
+    }
 }

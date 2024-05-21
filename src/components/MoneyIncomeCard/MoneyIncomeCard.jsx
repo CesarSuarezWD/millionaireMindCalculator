@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { sendPostRequest, dateNowFormated } from "../../helpers/functions";
 import toast, { Toaster } from 'react-hot-toast';
-import moneyBagIcon from '../../assets/millionaireMindLogo.png'
+import moneyBagIcon from '../../assets/goldenBrain.png'
 import "./MoneyIncomeCard.css";
 
 const MoneyIncomeCard = ({ saldoDisponible, setResponse }) => {
