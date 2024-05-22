@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -u \"$VITE_REACT_APP_GITHUB_USERNAME <$VITE_REACT_APP_GITHUB_EMAIL>\" -b millionaireMindCalculatorPrivate -d dist",
+    "deploy": "node -r dotenv/config -e \"require('child_process').execSync('gh-pages -u \\\"' + process.env.VITE_REACT_APP_GITHUB_USERNAME + ' <' + process.env.VITE_REACT_APP_GITHUB_EMAIL + '>\\\" -b millionaireMindCalculatorPrivate -d dist', {stdio: 'inherit'})\"",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
