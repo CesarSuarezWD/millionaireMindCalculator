@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -u https://github.com/CesarSuarezWD/millionaireMindCalculator -b millionaireMindCalculatorPrivate -d dist",
+    "deploy": "gh-pages -u \"$VITE_REACT_APP_GITHUB_USERNAME <$VITE_REACT_APP_GITHUB_EMAIL>\" -b millionaireMindCalculatorPrivate -d dist",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
